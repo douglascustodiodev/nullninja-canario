@@ -18,6 +18,10 @@ http
         ok: true,
         servico: "nullninja-canario",
         caminho: req.url,
+        // A plataforma confere que veio "production": o nixpacks poe NODE_ENV
+        // no plano de todo app Node. Vazio aqui = imagem construida sem as
+        // variaveis do plano (o defeito de 08/out/2026 no builder).
+        node_env: process.env.NODE_ENV ?? null,
         em: new Date().toISOString(),
       })
     );
